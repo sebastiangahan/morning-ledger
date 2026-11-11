@@ -1,0 +1,82 @@
+{
+  "doug-ford": {
+    "name": "Doug Ford",
+    "file": "doug-ford.jpg",
+    "wikidata": "Q5300478",
+    "description": "Canadian politician and 26th premier of Ontario since 2018 (born 1964)",
+    "author": "Ambassador Pete Hoekstra",
+    "license": "Public domain",
+    "license_url": "",
+    "source": "https://commons.wikimedia.org/wiki/File:Doug_Ford_in_Toronto_June_2025_(edited).jpg"
+  },
+  "mark-carney": {
+    "name": "Mark Carney",
+    "file": "mark-carney.jpg",
+    "wikidata": "Q192533",
+    "description": "24th prime minister of Canada since 2025",
+    "author": "Bryan Berlin",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Mark_Carney_Argentina_v_Spain_19_July_2026-303_(3x4_close_up_cropped).jpg"
+  },
+  "pierre-poilievre": {
+    "name": "Pierre Poilievre",
+    "file": "pierre-poilievre.jpg",
+    "wikidata": "Q3386636",
+    "description": "Canadian politician",
+    "author": "Humberland",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "source": "https://commons.wikimedia.org/wiki/File:Pierre_Poilievre_in_2023_(edited).jpg"
+  },
+  "william-nylander": {
+    "name": "William Nylander",
+    "file": "william-nylander.jpg",
+    "wikidata": "Q14614517",
+    "description": "Canadian-Swedish ice hockey player",
+    "author": "TheAHL",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:William_Nylander_(39540536784)_(a).jpg"
+  },
+  "kawhi-leonard": {
+    "name": "Kawhi Leonard",
+    "file": "kawhi-leonard.jpg",
+    "wikidata": "Q926248",
+    "description": "American basketball player (born 1991)",
+    "author": "Chensiyuan",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:1_kawhi_leonard_2019_nba_finals_(cropped).jpg"
+  },
+  "sza": {
+    "name": "SZA",
+    "file": "sza.jpg",
+    "wikidata": "Q16210722",
+    "description": "American singer-songwriter (born 1989)",
+    "author": "Raph_PH",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:KendrickSZASPurs230725-19_-_54683179509_(cropped)_(cropped).jpg"
+  },
+  "scotiabank-arena": {
+    "name": "Scotiabank Arena",
+    "file": "scotiabank-arena.jpg",
+    "wikidata": "Q406972",
+    "description": "indoor arena in Toronto, Canada",
+    "author": "Secondarywaltz",
+    "license": "Public domain",
+    "license_url": "",
+    "source": "https://commons.wikimedia.org/wiki/File:Air_Canada_Centre_and_CN_Tower_from_Bay_St.jpg"
+  },
+  "queen-s-park": {
+    "name": "Queen's Park",
+    "file": "queen-s-park.jpg",
+    "wikidata": "Q1809086",
+    "description": "single house of Legislature of Ontario",
+    "author": "Josh Evnin from Chicago, IL, USA",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Interior_Ontario_Legislative_Assembly_Toronto_2010.jpg"
+  }
+}
