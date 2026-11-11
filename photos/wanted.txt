@@ -1,4 +1,4 @@
-# One name per line. Optional hint after "|" picks the right person (matched against the Wikidata description).
+# One name per line: Name | hint | File:Optional_pick.jpg  (hint must appear in the Wikidata description)
 # The daily run appends names here; the "Fetch photos" action downloads any that are missing.
 Doug Ford | Premier of Ontario
 Mark Carney | Prime Minister of Canada
