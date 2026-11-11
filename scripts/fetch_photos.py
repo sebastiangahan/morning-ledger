@@ -10,13 +10,13 @@ too so a different one can be picked by hand. Entries made by an older picker ar
 Runs in GitHub Actions (see .github/workflows/photos.yml)."""
 import json, re, time, unicodedata, pathlib, urllib.parse, urllib.request, datetime
 
-PICKER = 4
+PICKER = 5
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DIR = ROOT / "photos"
 UA = "MorningLedgerPhotoBot/1.1 (https://themorningledgerr.netlify.app)"
 FREE = re.compile(r"^(cc0|cc[- ]by(-sa)?[- ]?[0-9.]*|public domain|pd.*|attribution.*)$", re.I)
 YEAR = datetime.date.today().year
-NEG = re.compile(r"portrait|official|headshot|head shot|crop|signature|logo|poster|card|flag|coat of arms|campaign photo|mugshot|graffiti|statue|wax|cartoon|drawing|painting|\bsign\b|banner|billboard|screenshot|quote|slogan|mural|caricature|vandal|turd|meme|protest sign|placard|tombstone|plaque|stamp|coin", re.I)
+NEG = re.compile(r"portrait|official|headshot|head shot|signature|logo|poster|card|flag|coat of arms|campaign photo|mugshot|graffiti|statue|wax|cartoon|drawing|painting|\bsign\b|banner|billboard|screenshot|quote|slogan|mural|caricature|vandal|turd|meme|protest sign|placard|tombstone|plaque|stamp|coin", re.I)
 POS = re.compile(r"speak|speech|talk|at the|during|game|match|vs\.?|versus|playing|plays|rally|concert|perform|live|tour|festival|visit|meet|meeting|press|conference|announce|parade|ceremony|event|interview|stage|summit|warm[- ]?up|practice|celebrat", re.I)
 
 def get(url, params=None):
@@ -107,8 +107,8 @@ def score(title, ii, human=True):
         s += 5 * min(2, len(OUTSIDE.findall(text)))
         s -= 9 * min(1, len(INSIDE.findall(text)))
         s += 2.5 * (YEAR - year) * 0.6   # landmarks change slowly: age matters less
-    s -= 8 * min(2, len(NEG.findall(text)))
-    if re.search(r"\(cropped\)|cropped", title, re.I): s -= 6
+    s -= 8 * min(2, len(NEG.findall(re.sub(r"\(cropped\)", "", text))))
+    if re.search(r"cropped", title, re.I): s += 3 if human else -6   # crops of people are usually tight, press-style framing
     others = len(re.findall(r",| and | & ", title))
     s -= 3 * max(0, others - 1)        # crowded group shots make weak lead photos
     return s, year, lic, md
