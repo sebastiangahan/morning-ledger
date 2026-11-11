@@ -106,5 +106,41 @@
     "source": "https://commons.wikimedia.org/wiki/File:Xi_Jinping_at_press_conference_(May_2026).jpg",
     "picker": 6,
     "alternatives": []
+  },
+  "dario-amodei": {
+    "name": "Dario Amodei",
+    "wikidata": "Q103335665",
+    "description": "CEO and co-founder of Anthropic",
+    "photo_year": 2023,
+    "author": "UK Prime Minister",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:The_Prime_Minister_meets_with_AI_developers_-_52922965274.jpg",
+    "picker": 6,
+    "alternatives": [
+      "File:Sanae Takaichi and Dario Amodei in 2025 (1).jpg",
+      "File:Sanae Takaichi and Dario Amodei in 2025 (2).jpg",
+      "File:Dario Amodei at TechCrunch Disrupt 2023 01.jpg",
+      "File:Dario Amodei at TechCrunch Disrupt 2023 03.jpg",
+      "File:Dario Amodei at TechCrunch Disrupt 2023 04.jpg"
+    ]
+  },
+  "aidan-gomez": {
+    "name": "Aidan Gomez",
+    "wikidata": "Q110864219",
+    "description": "artificial intelligence researcher",
+    "photo_year": 2023,
+    "author": "Piaras Ó Mídheach",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Aidan_Gomez_at_Collision_2023.jpg",
+    "picker": 6,
+    "alternatives": [
+      "File:Aidan Gomez at \"ALL IN\" 2025 01.jpg",
+      "File:Aidan Gomez at \"ALL IN\" 2025 02.jpg",
+      "File:Aidan Gomez at \"ALL IN\" 2025 03.jpg",
+      "File:Aidan Gomez at \"ALL IN\" 2025 04.jpg",
+      "File:Aidan Gomez at \"ALL IN\" 2025 05.jpg"
+    ]
   }
 }
