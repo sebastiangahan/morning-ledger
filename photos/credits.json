@@ -8,7 +8,7 @@
     "license": "CC BY 2.0",
     "license_url": "https://creativecommons.org/licenses/by/2.0",
     "source": "https://commons.wikimedia.org/wiki/File:Doug_Ford_at_Building_Faster_Fund_announcement_2024-03-22_01.jpg",
-    "picker": 4,
+    "picker": 5,
     "alternatives": []
   },
   "mark-carney": {
@@ -20,20 +20,26 @@
     "license": "CC BY 4.0",
     "license_url": "https://creativecommons.org/licenses/by/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Address_by_Mark_Carney_at_the_World_Economic_Forum_Annual_Meeting_2026.jpg",
-    "picker": 4,
+    "picker": 5,
     "alternatives": []
   },
   "pierre-poilievre": {
     "name": "Pierre Poilievre",
     "wikidata": "Q3386636",
     "description": "Canadian politician",
-    "photo_year": 2022,
-    "author": "Mykola Swarnyk",
-    "license": "CC BY-SA 3.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Pierre_Poilievre_Holodomor_2022_1.jpg",
-    "picker": 4,
-    "alternatives": []
+    "photo_year": 2024,
+    "author": "TVA Nouvelles",
+    "license": "CC BY 3.0",
+    "license_url": "https://creativecommons.org/licenses/by/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Pierre_Poilievre_interview_with_TVA_Nouvelles_June_2024.jpg",
+    "picker": 5,
+    "alternatives": [
+      "File:Joe Biden participates in a pull-aside meeting with Pierre Poilievre (52881221960).jpg",
+      "File:Joe Biden participates in a pull-aside meeting with Pierre Poilievre (52881221960) (cropped).jpg",
+      "File:פייר פוליאב, אסיפת בחירות.jpg",
+      "File:Pierre Poilievre Holodomor 2022 1 (cropped).jpg",
+      "File:Pierre Poilievre Holodomor 2022 1.jpg"
+    ]
   },
   "william-nylander": {
     "name": "William Nylander",
@@ -44,20 +50,26 @@
     "license": "CC BY-SA 2.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
     "source": "https://commons.wikimedia.org/wiki/File:Toronto_Maple_Leafs_at_Seattle_Kraken_-_2024-01-21_-_William_Nylander_(53480729074)_(cropped).jpg",
-    "picker": 4,
+    "picker": 5,
     "alternatives": []
   },
   "kawhi-leonard": {
     "name": "Kawhi Leonard",
     "wikidata": "Q926248",
     "description": "American basketball player (born 1991)",
-    "photo_year": 2019,
-    "author": "Chensiyuan",
-    "license": "CC BY-SA 4.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Kawhi_Leonard_vs_Charlotte_2019.jpg",
-    "picker": 4,
-    "alternatives": []
+    "photo_year": 2022,
+    "author": "Lance Cpl. Mhecaela J. Watts",
+    "license": "Public domain",
+    "license_url": "",
+    "source": "https://commons.wikimedia.org/wiki/File:Marines_welcome_Kawhi_Leonard_aboard_Camp_Pendleton_(1).jpg",
+    "picker": 5,
+    "alternatives": [
+      "File:Marines welcome Kawhi Leonard aboard Camp Pendleton (7440607).jpg",
+      "File:1 kawhi leonard 2019.jpg",
+      "File:Kawhi Leonard presents ball to President Obama 2 2015-01-12 cropped.jpg",
+      "File:Kawhi Leonard vs Charlotte 2019.jpg",
+      "File:1 kawhi leonard 2019 (cropped).jpg"
+    ]
   },
   "sza": {
     "name": "SZA",
@@ -68,7 +80,7 @@
     "license": "CC BY 4.0",
     "license_url": "https://creativecommons.org/licenses/by/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:KendrickSZASPurs230725-112.jpg",
-    "picker": 4,
+    "picker": 5,
     "alternatives": [
       "File:KendrickSZASPurs230725-49.jpg",
       "File:KendrickSZASPurs230725-53.jpg",
@@ -81,19 +93,13 @@
     "name": "Scotiabank Arena",
     "wikidata": "Q406972",
     "description": "indoor arena in Toronto, Canada",
-    "photo_year": 2026,
-    "author": "Sikander",
+    "photo_year": 2018,
+    "author": "Adam Bishop",
     "license": "CC BY-SA 4.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Scotiabank_Arena_from_CIBC_Square_Park_-_20260308.jpg",
-    "picker": 4,
-    "alternatives": [
-      "File:Scotiabank Arena along Bay Street, May 13 2026 (01).jpg",
-      "File:Toronto Harbour as viewed from the top of the TD Tower.jpg",
-      "File:Connecting Tunnel of CIBC Square and Scotiabank Arena.jpg",
-      "File:Scotiabank Arena Entrance to PATH 2021.jpeg",
-      "File:Scotiabank Arena Exterior.jpg"
-    ]
+    "source": "https://commons.wikimedia.org/wiki/File:Scotiabank_Arena_at_dusk.jpg",
+    "picker": 5,
+    "alternatives": []
   },
   "queen-s-park": {
     "name": "Queen's Park",
@@ -104,7 +110,7 @@
     "license": "CC BY 4.0",
     "license_url": "https://creativecommons.org/licenses/by/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Canada_Day_in_Queen%27s_Park_20260701.jpg",
-    "picker": 4,
+    "picker": 5,
     "alternatives": []
   },
   "xi-jinping": {
@@ -116,7 +122,7 @@
     "license": "CC BY 4.0",
     "license_url": "https://creativecommons.org/licenses/by/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Xi_Jinping_at_press_conference_(May_2026).jpg",
-    "picker": 4,
+    "picker": 5,
     "alternatives": []
   }
 }
