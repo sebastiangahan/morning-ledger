@@ -10,7 +10,7 @@ too so a different one can be picked by hand. Entries made by an older picker ar
 Runs in GitHub Actions (see .github/workflows/photos.yml)."""
 import json, re, time, unicodedata, pathlib, urllib.parse, urllib.request, datetime
 
-PICKER = 3
+PICKER = 4
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DIR = ROOT / "photos"
 UA = "MorningLedgerPhotoBot/1.1 (https://themorningledgerr.netlify.app)"
@@ -41,6 +41,8 @@ def find_item(name, hint):
         if hint and hint.lower() not in (c.get("description") or "").lower(): continue
         claims = api(WD, action="wbgetentities", ids=c["id"], props="claims")["entities"][c["id"]].get("claims", {})
         val = lambda p: claims[p][0]["mainsnak"].get("datavalue", {}).get("value") if p in claims else None
+        human = any(x["mainsnak"].get("datavalue", {}).get("value", {}).get("id") == "Q5" for x in claims.get("P31", []))
+        c["human"] = human
         if val("P373") or val("P18"): return c, val("P373"), val("P18")
     return None, None, None
 
@@ -82,7 +84,11 @@ def info(titles):
         time.sleep(0.5)
     return out
 
-def score(title, ii):
+INSIDE = re.compile(r"interior|inside|locker|dressing|seats|seating|bowl|\btour\b|concourse|room|chamber|lobby|suite|court|rink|stage", re.I)
+OUTSIDE = re.compile(r"exterior|outside|from |street|fa[cç]ade|front|entrance|aerial|skyline|view|plaza|square|night|dusk|sunset", re.I)
+PAPARAZZI = re.compile(r"guests at|arrivals|arriving|red carpet|street style|spotted|paparazzi|backstage|fan photo|selfie|with fans", re.I)
+
+def score(title, ii, human=True):
     md = ii.get("extmetadata", {})
     lic = strip(md.get("LicenseShortName", {}).get("value"))
     if not FREE.match(lic): return None
@@ -94,7 +100,13 @@ def score(title, ii):
     year = min(year, YEAR)
     s = -2.5 * (YEAR - year)            # each year older costs 2.5 points
     s += 4 if w > h * 1.15 else (-3 if h > w * 1.1 else 0)  # landscape framing tends to be candid
-    s += 4 * min(2, len(POS.findall(text)))
+    if human:
+        s += 4 * min(2, len(POS.findall(text)))
+        s -= 7 * min(1, len(PAPARAZZI.findall(text)))
+    else:
+        s += 5 * min(2, len(OUTSIDE.findall(text)))
+        s -= 9 * min(1, len(INSIDE.findall(text)))
+        s += 2.5 * (YEAR - year) * 0.6   # landmarks change slowly: age matters less
     s -= 8 * min(2, len(NEG.findall(text)))
     if re.search(r"\(cropped\)|cropped", title, re.I): s -= 6
     others = len(re.findall(r",| and | & ", title))
@@ -129,7 +141,7 @@ def main():
                 if len(titles) < 8 and cat: titles += [x for x in category_files(cat) if name.split()[-1].lower() in x.lower()]
                 if p18: titles.append("File:" + p18)
                 titles = list(dict.fromkeys(titles))
-                ranked = [(sc, t, ii) for t, ii in info(titles) if (sc := score(t, ii))]
+                ranked = [(sc, t, ii) for t, ii in info(titles) if (sc := score(t, ii, (item or {}).get("human", True)))]
                 ranked.sort(key=lambda x: x[0][0], reverse=True)
             if not ranked: missing.append(f"{name}: no free photo found"); continue
             (sc, year, lic, md), title, ii = ranked[0]
@@ -140,13 +152,13 @@ def main():
             if not forced and cdir.exists():
                 for f in cdir.glob("*"): f.unlink()
             cdir.mkdir(parents=True, exist_ok=True)
-            for n, (_, t2, ii2) in enumerate([] if forced else ranked[:8]):
+            for n, (_, t2, ii2) in enumerate([] if forced else ranked[:12]):
                 try:
                     small = api(CM, action="query", titles=t2, prop="imageinfo", iiprop="url", iiurlwidth=480)
                     u = next(iter(small["query"]["pages"].values()))["imageinfo"][0]["thumburl"]
                     (cdir / f"{n}.jpg").write_bytes(get(u))
                 except Exception: pass
-            if not forced: (cdir / "list.json").write_text(json.dumps([t2 for _, t2, _ in ranked[:8]], indent=1, ensure_ascii=False))
+            if not forced: (cdir / "list.json").write_text(json.dumps([t2 for _, t2, _ in ranked[:12]], indent=1, ensure_ascii=False))
             credits[key] = credit(name, item, title, ii, lic, md, year, alts)
             print(f"OK  {name}: {title} ({year}, score {sc:.1f}, {len(ranked)} candidates)")
             for (s2, y2, *_), t2, _ in ranked[1:6]: print(f"    alt {t2} ({y2}, {s2:.1f})")
