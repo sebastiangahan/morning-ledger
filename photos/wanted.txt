@@ -1,0 +1,11 @@
+# One name per line. Optional hint after "|" picks the right person (matched against the Wikidata description).
+# The daily run appends names here; the "Fetch photos" action downloads any that are missing.
+Doug Ford | Premier of Ontario
+Mark Carney | Prime Minister of Canada
+Pierre Poilievre | Canadian politician
+Xi Jinping | China
+William Nylander | ice hockey
+Kawhi Leonard | basketball
+SZA | singer
+Scotiabank Arena
+Queen's Park | Ontario
