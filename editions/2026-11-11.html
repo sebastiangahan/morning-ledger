@@ -1,0 +1,294 @@
+<title>The Morning Ledger</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<!-- EDITORIAL RULES FOR EVERY EDITION
+     Reader: an educated person who does not follow politics. Say who each person is and which party they lead the
+     first time they appear, explain every institution or acronym in a clause, and give each story a "The background" paragraph.
+     Fact-first and non-partisan. Only attribute framing actually found in that outlet. Flag anything unverified.
+     Look: white page, black type, no colour. Numbers sit in black circles or ruled boxes. Story text runs in justified newspaper columns. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,700;6..96,900&family=Playfair+Display:ital,wght@0,700;0,800;1,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans+Condensed:wght@500;600;700&display=swap">
+<style>
+/* Layout: a black-and-white broadsheet. Masthead, a boxed figures strip, a front page with the lead story beside a
+   rail (scan + watch list), then section pages whose stories run in justified columns with column rules. Single light look by choice. */
+:root{
+  --paper:#ffffff; --ink:#000000; --ink-2:#444444; --hair:#bdbdbd; --tint:#f3f3f3;
+  --f-mast:"Bodoni Moda","Playfair Display","Times New Roman",serif;
+  --f-head:"Playfair Display",Georgia,"Times New Roman",serif;
+  --f-body:"Newsreader",Georgia,"Times New Roman",serif;
+  --f-util:"IBM Plex Sans Condensed","Arial Narrow",Arial,sans-serif;
+  color-scheme:light;
+}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17.5px;line-height:1.46}
+.page{max-width:1140px;margin:0 auto;padding-block:18px 48px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit;text-decoration-color:var(--hair);text-underline-offset:2px}
+a:hover{text-decoration-color:var(--ink)}
+a:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+h1,h2,h3,h4,p,ul,ol{margin:0}
+.util{font-family:var(--f-util);text-transform:uppercase;letter-spacing:.09em;font-size:12px;font-weight:600}
+
+/* masthead */
+.ears{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--ink-2)}
+.mast{text-align:center;font-family:var(--f-mast);font-weight:900;text-transform:uppercase;letter-spacing:-.01em;
+  font-size:clamp(34px,8.4vw,88px);line-height:1;padding:10px 0 12px}
+.dateline{display:flex;justify-content:space-between;gap:6px 20px;flex-wrap:wrap;border-top:4px solid var(--ink);border-bottom:1px solid var(--ink);padding:6px 0}
+
+/* figures strip */
+.nums{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;padding:14px 0;border-bottom:1px solid var(--ink)}
+.num{border:2px solid var(--ink);padding:8px 10px;min-width:0}
+.num b{display:block;font-family:var(--f-head);font-weight:800;font-size:26px;font-variant-numeric:tabular-nums;line-height:1.1}
+.num small{display:block;font-family:var(--f-util);font-size:13px;line-height:1.25;margin-top:3px;color:var(--ink-2)}
+
+/* section header */
+.sect{display:flex;align-items:center;gap:12px;margin-top:30px;border-top:4px solid var(--ink);border-bottom:1px solid var(--ink);padding:6px 0}
+.sect h2{font-family:var(--f-util);text-transform:uppercase;letter-spacing:.16em;font-size:15px;font-weight:700}
+.sect span{color:var(--ink-2);font-size:14px;font-style:italic}
+
+/* front page */
+.front{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:28px;padding-top:18px}
+.front>*{min-width:0}
+.rail{border-left:1px solid var(--ink);padding-left:22px;display:grid;gap:22px;align-content:start}
+.rail h2{font-family:var(--f-head);font-weight:800;font-size:23px;line-height:1.1;border-bottom:2px solid var(--ink);padding-bottom:6px;margin-bottom:10px}
+.scan{list-style:none;padding:0;counter-reset:s;display:grid;gap:12px;font-size:16px;line-height:1.38}
+.scan li{counter-increment:s;display:grid;grid-template-columns:30px 1fr;gap:10px}
+.scan li::before{content:counter(s);width:28px;height:28px;border-radius:50%;background:var(--ink);color:var(--paper);
+  font-family:var(--f-util);font-weight:700;font-size:15px;display:grid;place-items:center;margin-top:1px}
+.watch{display:grid;gap:9px;font-size:15.5px;line-height:1.35}
+.watch div{display:grid;grid-template-columns:78px 1fr;gap:10px;align-items:start}
+.watch b{font-family:var(--f-util);font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;border:1.5px solid var(--ink);padding:2px 4px;text-align:center}
+
+/* story */
+.story{padding:18px 0 20px;border-bottom:1px solid var(--ink)}
+.front .story{padding-top:0;border-bottom:0}
+.kicker{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+.status{font-family:var(--f-util);font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;border:1.5px solid var(--ink);padding:1px 6px;white-space:nowrap}
+.status.ok{background:var(--ink);color:var(--paper)}
+.status.disp{border-style:dashed}
+.story h3{font-family:var(--f-head);font-weight:800;font-size:clamp(24px,3.1vw,33px);line-height:1.1;text-wrap:balance;max-width:26em}
+.lead h3{font-size:clamp(30px,4.6vw,48px)}
+.deck{font-style:italic;color:var(--ink-2);font-size:19px;line-height:1.35;margin-top:8px;max-width:60ch}
+.copy{margin-top:14px;column-width:255px;column-gap:26px;column-rule:1px solid var(--hair);text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+.lead .copy{column-width:300px}
+.copy p{margin:0 0 .75em}
+.lab{font-family:var(--f-util);text-transform:uppercase;letter-spacing:.07em;font-size:12.5px;font-weight:700;margin-right:6px}
+.lab::after{content:" ▪"}
+.copy h4{font-family:var(--f-util);text-transform:uppercase;letter-spacing:.1em;font-size:12.5px;font-weight:700;border-top:2px solid var(--ink);border-bottom:1px solid var(--ink);padding:3px 0;margin:.4em 0 .6em;text-align:left;break-after:avoid}
+.copy p.fr{break-inside:avoid}
+.copy p.fr b{font-family:var(--f-util);font-size:13px;font-weight:700;letter-spacing:.03em;text-transform:uppercase}
+.tag{font-family:var(--f-util);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:1.5px solid var(--ink);padding:0 5px;margin-right:6px;white-space:nowrap}
+.lens{border:2px solid var(--ink);background:var(--tint);padding:9px 11px;margin:0 0 .75em;break-inside:avoid;font-size:16px;line-height:1.4;text-align:left;hyphens:manual}
+.lens .lab{display:block;margin-bottom:3px}
+.lens .lab::after{content:""}
+.src{font-family:var(--f-util);font-size:13px;color:var(--ink-2);font-weight:500;text-align:left;hyphens:manual;break-inside:avoid}
+
+/* briefs */
+.briefs{column-width:255px;column-gap:26px;column-rule:1px solid var(--hair);padding-top:16px;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+.briefs div{break-inside:avoid;margin-bottom:16px}
+.briefs h3{font-family:var(--f-head);font-weight:800;font-size:19px;line-height:1.18;margin-bottom:4px;text-align:left}
+.foot{margin-top:26px;border-top:4px solid var(--ink);padding-top:10px;color:var(--ink-2);font-size:14.5px;max-width:84ch}
+@media (max-width:900px){
+  .nums{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .front{grid-template-columns:1fr}
+  .rail{border-left:0;padding-left:0;border-top:1px solid var(--ink);padding-top:18px}
+}
+@media (max-width:520px){
+  body{font-size:17px}
+  .nums{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .copy,.briefs{text-align:left}
+}
+</style>
+
+<div class="page" lang="en">
+  <div class="ears util"><span>Sample edition · No. 1</span><span>About a 12-minute read</span></div>
+  <div class="mast">The Morning Ledger</div>
+  <div class="dateline util"><span>Wednesday, November 11, 2026 · Remembrance Day</span><span>Toronto · Ontario · Canada · United States · World</span></div>
+
+  <div class="nums">
+    <div class="num"><b>2.5%</b><small>Bank of Canada interest rate, raised Oct. 28</small></div>
+    <div class="num"><b>3.5%</b><small>Inflation the Bank expects by year-end</small></div>
+    <div class="num"><b>6.7%</b><small>Unemployment in October</small></div>
+    <div class="num"><b>~70¢</b><small>One Canadian dollar in U.S. cents (approx.)</small></div>
+    <div class="num"><b>$92.50</b><small>Barrel of Brent crude oil, in US$</small></div>
+    <div class="num"><b>44·28·12</b><small>Liberal, Conservative, NDP support (Nanos)</small></div>
+  </div>
+
+  <div class="front">
+    <article class="story lead">
+      <div class="kicker"><span class="status">Developing</span><span class="util">Lead story · Ontario auto sector</span></div>
+      <h3>Stellantis sells its Brampton plant to a defence firm, and Ottawa says the company broke its word</h3>
+      <p class="deck">The fight is now about whether billions of dollars in public subsidy promises can actually be enforced.</p>
+      <div class="copy">
+        <p class="first"><span class="lab">What happened</span>Stellantis, the multinational that owns Jeep, Dodge and Chrysler, confirmed Monday that it has signed a deal to sell its Brampton assembly plant to Roshel, a Canadian company that builds armoured vehicles for police and militaries. The plant has made cars since 1986 but has built nothing since December 2023, when the last Dodge Chargers and Challengers came off the line.</p>
+        <p><span class="lab">The background</span>The plant was supposed to be retooled to build the Jeep Compass. Stellantis paused that work in early 2025, after U.S. President Donald Trump put tariffs on vehicles made outside the United States, and later moved the Compass to Illinois. That matters because in 2023 the federal and Ontario governments promised Stellantis up to $15 billion over 10 years, mainly to secure an electric-vehicle battery factory in Windsor. In return the company agreed to keep its Ontario operations, Brampton included, running through 2035.</p>
+        <p><span class="lab">What every outlet agrees on</span>About 2,200 workers are on layoff. The sale price has not been made public. Ottawa opened a formal contract dispute with Stellantis in October 2025. Industry Minister Mélanie Joly has called a meeting for Thursday with the company, the province and Unifor, the union that represents the workers and is Canada’s largest private-sector union.</p>
+        <h4>How it is being framed</h4>
+        <p class="fr"><b>Globe, CBC, Global (centre).</b> These lead with Prime Minister Mark Carney, a Liberal, calling the sale “a betrayal” and “completely outrageous,” and promising to “fully enforce our rights” to recover public money.</p>
+        <p class="fr"><b>Toronto Sun, National Post (right).</b> These lead with Conservative Leader Pierre Poilievre, who heads the Official Opposition. He says Canada is at a “breaking point,” wants Joly fired, and wants Ottawa to sue now rather than keep threatening to. The Sun notes that Canadian auto output has fallen from 2.2 million vehicles in 2016 to about 1.2 million.</p>
+        <p class="fr"><b>CP24 (local).</b> Roshel’s chief executive says the company “is not going to even consider” taking responsibility for the laid-off workers, though it will favour Brampton residents when it hires. Unifor says the deal lets Stellantis walk away from its commitments.</p>
+        <p class="fr"><b>The complication.</b> CTV reports, citing unnamed sources, that Ottawa was closely involved in the sale talks and did not block the deal. That sits awkwardly beside the “betrayal” language. Nobody has confirmed it on the record.</p>
+        <h4>Why it matters to you</h4>
+        <p><span class="tag">Economy</span>An assembly plant is the centre of a web of suppliers. Flavio Volpe, who leads the auto-parts industry association, says Brampton once supported 10,000 to 12,000 supplier jobs across the Toronto region. Armoured vehicles are a far smaller business than mass-market cars.</p>
+        <p><span class="tag">Policy</span>The $15 billion was a performance incentive, paid as the company delivers, so how much has actually gone out is unclear. If Ottawa cannot claw money back, every future subsidy deal becomes harder to defend.</p>
+        <p><span class="tag">Foreign relations</span>The work left for Illinois under U.S. tariff pressure, and Trump has threatened a 50% tariff on Canadian autos from Jan. 1.</p>
+        <div class="lens"><span class="lab">Democracy and ideology lens</span>Paying companies to build here is called industrial policy. In this case a Liberal federal government and a Progressive Conservative provincial one both signed on. Free-market conservatives argue governments should not pick winners. The left argues public money should buy enforceable guarantees or an ownership stake. This case tests whether the contracts had teeth.</div>
+        <p class="src">Sources: <a href="https://globalnews.ca/news/12144343/stellantis-sale-to-roshel-canada/">Global News</a> · <a href="https://www.theglobeandmail.com/business/article-stellantis-brampton-roshel-auto-plant-ottawa-federal-funding-november/">Globe and Mail</a> · <a href="https://www.cp24.com/local/toronto/2026/11/10/roshel-ceo-says-company-wont-take-responsibility-for-2200-workers-on-layoff-at-brampton-assembly-plant/">CP24</a> · <a href="https://ca.news.yahoo.com/warmington-sale-stellantis-plant-brampton-230807064.html">Toronto Sun</a> · <a href="https://www.nationalnewswatch.com/">CTV via National Newswatch</a></p>
+      </div>
+    </article>
+
+    <aside class="rail">
+      <section>
+        <h2>The 60-second scan</h2>
+        <ol class="scan">
+          <li><span><b>Brampton.</b> Stellantis is selling its idled car plant to armoured-vehicle maker Roshel. The Prime Minister calls it a “betrayal.” All sides meet Thursday.</span></li>
+          <li><span><b>Ottawa.</b> Carney leaves today for Ireland, the Philippines, Cambodia and China, and says he will raise foreign interference with China’s president. Beijing denies interfering.</span></li>
+          <li><span><b>Queen’s Park.</b> The Ford government appointed the heads of eight regional governments, including York, Peel, Durham and Halton, instead of leaving the choice to voters or councils.</span></li>
+          <li><span><b>Washington.</b> Democrats won both houses of Congress. The outgoing Republican Congress has until Dec. 11 to avoid a government shutdown.</span></li>
+          <li><span><b>Your wallet.</b> Oil is near US$92 a barrel as Iran peace hopes and new attacks on tankers pull in opposite directions. That price is why interest rates just went up.</span></li>
+        </ol>
+      </section>
+      <section>
+        <h2>Watch list</h2>
+        <div class="watch">
+          <div><b>Thu Nov 12</b><span>Joly meets Stellantis, Unifor and Ontario on the Brampton plant.</span></div>
+          <div><b>Fri Nov 13</b><span>Mississippi finishes counting provisional ballots in its undecided U.S. Senate race.</span></div>
+          <div><b>Mon Nov 16</b><span>Ontario’s legislature returns. The opposition plans a new push on the student-aid audit.</span></div>
+          <div><b>Next week</b><span>Carney meets Xi Jinping at the APEC summit in Shenzhen. Alaska counts its Senate race Nov. 18.</span></div>
+          <div><b>Dec 9</b><span>Bank of Canada rate decision. Markets put the odds of another increase near one in three.</span></div>
+          <div><b>Dec 11</b><span>U.S. government funding runs out.</span></div>
+          <div><b>Jan 1</b><span>Trump’s threatened 50% tariff on Canadian autos would begin.</span></div>
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <div class="sect"><h2>Canada</h2><span>Federal politics and foreign policy</span></div>
+  <article class="story">
+    <div class="kicker"><span class="status ok">Confirmed</span><span class="util">Foreign policy</span></div>
+    <h3>Carney heads to Asia to sell trade, with a warning for Xi in his pocket</h3>
+    <div class="copy">
+      <p><span class="lab">What happened</span>After this morning’s Remembrance Day ceremony in Ottawa, the Prime Minister flies to Dublin, then on to three summits: one in the Philippines, the Francophonie (the club of French-speaking nations) in Cambodia, and APEC, the forum of 21 Pacific economies, in Shenzhen, China, next week. He said Tuesday he will talk with Chinese President Xi Jinping about expanding trade and about “non-interference in our affairs by China.”</p>
+      <p><span class="lab">The background</span>Roughly three-quarters of what Canada sells abroad goes to the United States. Since U.S. tariffs began, Carney has made finding other customers his central economic goal, and he has named China and India as targets. The difficulty is that a Canadian public inquiry concluded China meddled in the 2019 and 2021 federal elections and called it the most active foreign interferer in Canadian democracy. Relations collapsed under the previous prime minister, Justin Trudeau. Carney visited Beijing in January to begin repairing them.</p>
+      <p><span class="lab">The other side</span>China’s foreign ministry said today it has “never had any interest in interfering in Canada’s internal affairs,” which is its standing position.</p>
+      <h4>How it is being framed</h4>
+      <p class="fr"><b>CBC, Canadian Press.</b> A bridge-building tour to reduce dependence on the U.S. An Angus Reid poll finds Canadians growing more open to trade with China and India.</p>
+      <p class="fr"><b>Globe and Mail.</b> Stresses the security warning to Xi. CBC separately reported that Beijing blocked the Canadian embassy’s Tiananmen Square commemorations for two years.</p>
+      <p class="fr"><b>Right-leaning outlets.</b> Question courting Beijing at all while interference files remain open. I found less coverage here than elsewhere this morning.</p>
+      <h4>Why it matters to you</h4>
+      <p><span class="tag">Economy</span>Every new market lowers the cost of the next American tariff threat. Farmers and energy producers have the most to gain from Asian buyers.</p>
+      <p><span class="tag">Foreign relations</span>Closer ties with Beijing could irritate Washington in the middle of trade talks.</p>
+      <div class="lens"><span class="lab">Democracy and ideology lens</span>This is the old trade-off between an interests-first foreign policy (do business with whoever buys) and a values-first one (hold back from governments that undermine democracy). The test is whether interference is raised in the room or only at the press conference.</div>
+      <p class="src">Sources: <a href="https://cp24.com/news/canada/2026/11/11/china-shrugs-off-canada-interference-concerns-ahead-of-summit">CP24/AFP</a> · <a href="https://www.cbc.ca/news/politics/carney-apec-asean-francophonie-trip-9.7416895">CBC</a> · <a href="https://globalnews.ca/news/12145021/carney-xi-china-foreign-interference">Global</a> · <a href="https://www.pm.gc.ca/en/news/media-advisories/2026/11/10/wednesday-november-11-2026">PMO itinerary</a></p>
+    </div>
+  </article>
+
+  <article class="story">
+    <div class="kicker"><span class="status">Developing</span><span class="util">Canada–U.S. trade</span></div>
+    <h3>A trade deal “by year-end”? The clock that matters is Jan. 1</h3>
+    <div class="copy">
+      <p><span class="lab">Where things stand</span>Canada and the U.S. are negotiating to ease the tariffs, or import taxes, that Washington has placed on Canadian goods. Carney suspended the talks in August over American demands he said threatened Canadian sovereignty and cultural protections. He and Trump spoke on Nov. 1, and “more intensive” negotiations have resumed. The U.S. ambassador to Canada, Pete Hoekstra, predicts a deal by Dec. 31.</p>
+      <p><span class="lab">The background</span>Most Canada–U.S. trade runs under CUSMA, the 2020 agreement that replaced NAFTA and keeps most goods tariff-free. Trump has gone around it using national-security powers. U.S. tariffs on Canadian steel, aluminum and copper run as high as 50%, and autos face 25% with exemptions for American-made content. In July Washington declined to renew CUSMA for another 16 years, so the pact now comes up for review every year.</p>
+      <p><span class="lab">The midterm question</span>Democrats, who are generally cooler on tariffs, just won Congress. Both Hoekstra and Canada’s trade minister, Dominic LeBlanc, say that changes little, because tariffs are set by the president. No terms of any deal have been published.</p>
+      <h4>Why it matters to you</h4>
+      <p><span class="tag">Economy</span>A 50% auto tariff would land hardest on Ontario: Windsor, Oshawa, Alliston, Ingersoll and the parts plants around Toronto.</p>
+      <p><span class="tag">Daily life</span>Tariffs, and Canada’s counter-tariffs, feed into the price of cars, appliances and canned goods.</p>
+      <div class="lens"><span class="lab">Democracy and ideology lens</span>Tariffs used to be a cause of the protectionist left. Trump has made them a tool of the populist right, while many traditional conservatives still favour free trade. In the U.S. the power sits with one office, the presidency, and that concentration is itself being argued over in American courts.</div>
+      <p class="src">Sources: <a href="https://ici.radio-canada.ca/rci/en/news/2298375/trump-strategy-unchanged-after-democrats-midterm-landslide-says-canada-u-s-trade-minister">Radio-Canada</a> · <a href="https://finance.yahoo.com/news/exclusive-us-canada-working-deal-192957007.html">Reuters</a> · <a href="https://www.hashtaginvesting.com/blog/trumps-ambassador-says-democratic-victory-wont-change-canada-trade-talks-predicts-deal-by-year-end">Hashtag Investing summary</a></p>
+    </div>
+  </article>
+
+  <div class="sect"><h2>Ontario and Toronto</h2><span>Queen’s Park and City Hall</span></div>
+  <article class="story">
+    <div class="kicker"><span class="status ok">Confirmed</span><span class="util">Local democracy</span></div>
+    <h3>Ford government hand-picks the heads of eight regional governments</h3>
+    <div class="copy">
+      <p><span class="lab">What happened</span>Municipal Affairs Minister Rob Flack on Tuesday named the chairs of Durham, Halton, Niagara, Peel, Waterloo, York, Muskoka and Simcoe. They include Vaughan Mayor Steven Del Duca for York, Pickering Mayor Kevin Ashe for Durham, and Scott Aitchison, a federal Conservative MP who is leaving Ottawa, for Muskoka.</p>
+      <p><span class="lab">The background</span>Outside Toronto, much of Ontario has two layers of local government. Your city or town handles things like parks and local roads. A regional government above it runs police, water, public health and major transit for several municipalities at once, and its chair is the most powerful local official in the area. Until now chairs were either elected by residents or chosen by regional councillors. A law passed earlier this year by Premier Doug Ford’s Progressive Conservative government lets the minister appoint them instead and gives them “strong chair” powers over budgets and decisions.</p>
+      <h4>How it is being framed</h4>
+      <p class="fr"><b>Government.</b> Experienced local leaders who will keep regions “in sync” with the province and speed up housing and growth.</p>
+      <p class="fr"><b>Opposition and critics.</b> A transfer of power away from local voters and councils to the provincial government at Queen’s Park.</p>
+      <p class="fr"><b>Worth noting.</b> The picks cross party lines. Del Duca led the Ontario Liberals against Ford in the 2022 election. Chairs of the large regions earned more than $225,000 last year.</p>
+      <h4>Why it matters to you</h4>
+      <p><span class="tag">Policy</span>Regional chairs steer budgets for police, transit, water and roads for millions of people around Toronto.</p>
+      <p><span class="tag">Daily life</span>If you live in the 905, the person with the most say over your regional taxes was not chosen by you or by your council.</p>
+      <div class="lens"><span class="lab">Democracy and ideology lens</span>This is centralisation in the name of efficiency. It is unusual for a conservative government, since conservatism usually favours local control. The democratic cost is accountability: an appointed chair answers to the minister, not to voters.</div>
+      <p class="src">Sources: <a href="https://www.cp24.com/politics/queens-park/2026/11/10/doug-ford-government-appoints-8-new-regional-chairs-here-is-the-full-list/">CP24</a> · <a href="https://www.ctvnews.ca/toronto/politics/queens-park/article/doug-ford-government-appoints-8-new-regional-chairs-here-is-the-full-list/">CTV</a> · <a href="https://www.thetrillium.ca/">The Trillium</a></p>
+    </div>
+  </article>
+
+  <article class="story">
+    <div class="kicker"><span class="status">Developing</span><span class="util">City Hall</span></div>
+    <h3>“There’s no 2.0”: Ford closes the door on a new funding deal for Toronto</h3>
+    <div class="copy">
+      <p><span class="lab">What happened</span>Premier Ford said last week that Toronto will not get a second version of the “New Deal,” citing a $16.9-billion provincial deficit. “We’re in tough times,” he said. He left room for targeted help on crime and subway safety.</p>
+      <p><span class="lab">The background</span>Toronto spends more than it can raise. In 2023, shortly after Olivia Chow was first elected mayor, the city and province signed a three-year rescue: $1.2 billion in operating money, plus the province taking over the Gardiner Expressway and Don Valley Parkway, two highways the city could no longer afford to maintain. That deal runs out this year. Chow, who comes from the NDP and governs from the left, was re-elected on Oct. 26 over Councillor Brad Bradford, her main challenger from the right, and had hoped for a successor deal. She now says she will pursue priorities with the province one at a time.</p>
+      <h4>How it is being framed</h4>
+      <p class="fr"><b>Province.</b> Toronto has received $9 billion with federal help and must manage its own budget.</p>
+      <p class="fr"><b>Greens and Liberals.</b> Without a deal, cities face double-digit property-tax increases and worsening homelessness. They also say Ford overspent on construction and has little left to share.</p>
+      <p class="fr"><b>City.</b> CBC reports a hiring pause over “financial pressures.” One outlet puts next year’s gap at $1.1 billion. I could not confirm that figure from city documents.</p>
+      <h4>Why it matters to you</h4>
+      <p><span class="tag">Daily life</span>Chow promised tax increases near the rate of inflation. Without provincial money, the choices are higher property taxes, cuts to the TTC and other services, or delayed repairs.</p>
+      <p><span class="tag">Policy</span>The new council writes the 2027 budget this winter. It has seven new members, including former federal Liberal minister Nate Erskine-Smith and a returning Mike Layton.</p>
+      <div class="lens"><span class="lab">Democracy and ideology lens</span>Canadian cities have no standing in the Constitution. They are “creatures of the province,” which can change their powers at will, and they rely mostly on property tax. Fiscal conservatives say that forces discipline. Progressives say it leaves cities with big-city responsibilities and small-town tools.</div>
+      <p class="src">Sources: <a href="https://globalnews.ca/news/12136560/were-in-tough-times-doug-ford-shuts-the-door-on-new-funding-deal-for-toronto/">Global News</a> · <a href="https://www.cp24.com/local/toronto/2026/11/04/doug-ford-says-theres-no-20-new-deal-for-toronto/">CP24</a> · <a href="https://www.cbc.ca/news/canada/toronto/toronto-hiring-freeze-2026-9.7411892">CBC</a> · <a href="https://globalnews.ca/news/12122340/toronto-election-2026-winners/">Global (election)</a></p>
+    </div>
+  </article>
+
+  <div class="sect"><h2>United States</h2><span>One week after the midterms</span></div>
+  <article class="story">
+    <div class="kicker"><span class="status">Developing</span><span class="util">Congress</span></div>
+    <h3>Democrats take both houses of Congress. Republicans have seven weeks left to use theirs</h3>
+    <div class="copy">
+      <p><span class="lab">The background</span>Americans vote for Congress every two years. The votes halfway through a president’s four-year term are called midterms, and they usually punish the party in the White House. Congress has two halves: the 435-seat House of Representatives and the 100-seat Senate. Republicans have controlled both since January 2025, which let President Trump govern with little resistance. The winners do not take their seats until January. The weeks in between are called the “lame duck” session, when the outgoing Congress can still pass laws.</p>
+      <p><span class="lab">The count</span>Democrats have won at least 254 House seats, up from 214, with about 17 races still uncalled. They will hold at least 54 Senate seats after winning in Texas, for the first time since 1988, and Kansas. Mississippi and Alaska are still counting. New York’s Hakeem Jeffries is expected to become Speaker, the House’s presiding officer.</p>
+      <p><span class="lab">What is happening now</span>Government funding runs out Dec. 11. Without a new spending law, non-essential federal services shut down. The House voted 211–204 to shelve an attempt, written by a Republican, to impeach Defence Secretary Pete Hegseth over the war with Iran. Trump replaced his chief of staff with hard-line adviser Stephen Miller, said Republicans lost because he was not on the ballot, and ordered the Justice Department to look into Democratic “impeachment threats.”</p>
+      <h4>How it is being framed</h4>
+      <p class="fr"><b>CBS, NBC (centre-left).</b> A landslide and a rebuke of the Iran war. Democrats plan investigations into the Trump family’s business dealings, immigration enforcement and the Epstein files.</p>
+      <p class="fr"><b>Fox News (right).</b> A “brutal” lame duck. Conservatives want a Republican-only bill with defence money and $1 trillion in cuts before January. Some admit there is not enough time.</p>
+      <p class="fr"><b>Fiscal Times (non-partisan).</b> The likely outcome is a short-term funding patch, leaving the real fight to the new Congress.</p>
+      <h4>Why it matters to Canada</h4>
+      <p><span class="tag">Foreign relations</span>Jeffries lists ending Trump’s tariffs as a priority, but tariffs sit with the president. Do not expect quick relief.</p>
+      <p><span class="tag">Economy</span>A U.S. shutdown slows border processing and rattles markets. By Trump’s own count, U.S. stocks lost about $3 trillion the day after the vote.</p>
+      <div class="lens"><span class="lab">Democracy and ideology lens</span>Divided government restores a check that has been missing for two years: the power to investigate, to subpoena and to control budgets. Two things to watch are a president pointing prosecutors at political opponents, and a defeated majority passing major laws on its way out. The second is legal and long practised, but contested.</div>
+      <p class="src">Sources: <a href="https://www.cbsnews.com/live-updates/midterm-election-results-2026-democrats-house-senate-trump/">CBS News</a> · <a href="https://www.foxnews.com/politics/congress-returns-brutal-lame-duck-stretch-shutdown-deadline-leadership-races-closet-full-s">Fox News</a> · <a href="https://www.thefiscaltimes.com/newsletter/20261109-Lame-Duck-Congress-Faces-Shutdown-Deadline">Fiscal Times</a> · <a href="https://www.10things.news/p/10-things-global-news-11th-november-96f">BBC/SCMP via 10 Things</a></p>
+    </div>
+  </article>
+
+  <div class="sect"><h2>World</h2><span>And what it means here</span></div>
+  <article class="story">
+    <div class="kicker"><span class="status disp">Disputed</span><span class="util">Iran · Oil</span></div>
+    <h3>Trump says the Iran war is ending “fairly soon.” Tehran calls the talks “fake news”</h3>
+    <div class="copy">
+      <p><span class="lab">What happened</span>After meeting Qatar’s prime minister, who is acting as a go-between, Trump said further U.S. strikes on Iran are “quite unlikely.” Oil fell to a two-month low on the news, then climbed back today to about US$92.50 a barrel after new attacks on commercial ships in the Strait of Hormuz. A U.S. naval blockade of Iran remains in place.</p>
+      <p><span class="lab">The background</span>The United States and Israel have been striking Iran this year, aiming at its nuclear and missile programs. Iran sits beside the Strait of Hormuz, a narrow channel that carries roughly a fifth of the world’s oil, so fighting there moves prices everywhere. Oil began 2026 near $60 a barrel and peaked near $130 in the spring. The sticking points are that Washington wants Iran’s enriched nuclear material removed from the country, and Tehran will not guarantee free passage through the strait.</p>
+      <p><span class="lab">What is disputed</span>Whether talks exist at all. Iranian officials deny it. This week Iran showed off an underground missile base and dropped its self-imposed 2,000 km limit on missile range. The U.S. moved aircraft out of a second British base over Iranian threats, and France blames Iran for a cyberattack that warmed supermarket freezers nationwide. Iran has not accepted responsibility.</p>
+      <h4>Why it matters to you</h4>
+      <p><span class="tag">Daily life</span>Oil is the main reason for higher pump prices and for the Bank of Canada’s first interest-rate increase since 2023. The Bank raises rates to cool inflation, and that makes variable mortgages and renewals cost more.</p>
+      <p><span class="tag">Economy</span>Canada is pulled both ways. Expensive oil lifts Alberta’s revenues and hurts Ontario households. The country lost 4,700 jobs in October and unemployment is 6.7%.</p>
+      <p class="src">Sources: <a href="https://leprivatebanker.com/2026/11/11/oil-rebounds-from-two-month-lows-as-hormuz-shipping-attacks-cut-across-iran-truce-hopes/">The Private Banker</a> · <a href="https://www.bloomberg.com/news/articles/2026-11-10/latest-oil-market-news-and-analysis-for-nov-11">Bloomberg</a> · <a href="https://cp24.com/news/money/2026/11/10/bank-of-canada-moving-carefully-but-further-hikes-might-be-needed-meeting-summary">CP24 (Bank of Canada)</a> · <a href="https://www.10things.news/p/10-things-global-news-11th-november-96f">WSJ, NBC, Al Jazeera, Jerusalem Post via 10 Things</a></p>
+    </div>
+  </article>
+
+  <article class="story">
+    <div class="kicker"><span class="status">Developing</span><span class="util">Ukraine</span></div>
+    <h3>Russia and Ukraine sit down in Abu Dhabi for the first U.S.-brokered talks in nine months</h3>
+    <div class="copy">
+      <p><span class="lab">What happened</span>Tuesday’s session lasted about four hours and continues today. U.S. Secretary of State Marco Rubio called it productive, and Ukrainian President Volodymyr Zelenskyy called it constructive. They discussed prisoner exchanges and security guarantees for Ukraine.</p>
+      <p><span class="lab">The background</span>Russia launched its full-scale invasion of Ukraine in February 2022, and the war is now in its fifth year. The gap between the two sides has not moved. Moscow wants Ukraine to give up territory and abandon its bid to join NATO, the Western military alliance. Kyiv wants a ceasefire first and refuses to hand over land. European governments want a seat at the table and Russia is resisting. Both sides are still hitting each other’s infrastructure with long-range strikes.</p>
+      <h4>Why it matters to Canada</h4>
+      <p><span class="tag">Foreign relations</span>Zelenskyy says allies are discussing guarantees modelled on NATO’s promise that an attack on one is an attack on all. Canada is one of those allies and has one of the world’s largest Ukrainian communities, so a deal could come with a request for Canadian money or troops.</p>
+      <div class="lens"><span class="lab">Democracy and ideology lens</span>The same week, Russia’s last independent newspaper, Novaya Gazeta, closed its Moscow newsroom after losing its licence, its lease and its bank access. Six of its journalists have been murdered since 1993. The Kremlin called the closure normal industry turnover.</div>
+      <p class="src">Sources: <a href="https://www.10things.news/p/10-things-global-news-11th-november-96f">PBS, Reuters, NYT, DW via 10 Things</a> · <a href="https://www.viewstorys.com/2026/11/top-world-news-november-11-2026-abu.html">Viewstorys roundup</a></p>
+    </div>
+  </article>
+
+  <div class="sect"><h2>In brief</h2><span>Smaller stories worth knowing</span></div>
+  <div class="briefs">
+    <div><h3>Ottawa won’t defend its environmental review law</h3><p>The Impact Assessment Act lets the federal government review big projects such as mines and pipelines for environmental harm. Alberta says it intrudes on provincial powers, and its top court again found the law unconstitutional last month. The Toronto Star reports Ottawa will not defend it at the Supreme Court. That is a win for provinces and resource projects and a loss for federal oversight. <span class="status">Developing</span></p></div>
+    <div><h3>“Mr. Carney is not my boss”</h3><p>Quebec’s new premier, Paul St-Pierre Plamondon, leads the Parti Québécois, which wants Quebec to become its own country. He wrote to 59 newly elected U.S. officials offering direct trade ties. Carney says Canada needs a single negotiator. Expect more of this: the PQ’s aim is for Quebec to act like a state on the world stage. <span class="status ok">Confirmed</span></p></div>
+    <div><h3>Liberals lead by 16 points</h3><p>A Nanos poll has the governing Liberals at 44%, the Conservatives at 28% and the NDP at 12%. Carney leads Poilievre 54% to 20% as preferred prime minister. Separately, the National Post reports that the B.C. Conservatives’ provincial election win is lifting federal Conservative morale.</p></div>
+    <div><h3>Israel’s parliament turns on Netanyahu’s legacy</h3><p>After an election, opposition leader Gadi Eisenkot has six weeks to assemble a governing coalition. His bloc has 48 seats, Benjamin Netanyahu’s has 53, and 61 are needed. Opposition bills would open an inquiry into the Oct. 7, 2023 attacks and repeal Netanyahu’s overhaul of the courts.</p></div>
+    <div><h3>Arctic drilling back on the table</h3><p>Ottawa is considering lifting a decade-old ban on offshore oil and gas exploration in the Arctic, the Star reports. An Ipsos poll in the National Post finds 81% of Canadians support new pipelines and export terminals.</p></div>
+    <div><h3>Blindspot</h3><p>The pipeline poll ran mainly in right-leaning outlets, and the Tiananmen embassy story mainly on CBC. Both deserve wider pickup than they got this morning.</p></div>
+  </div>
+
+  <p class="foot"><b>How this is made.</b> Each story is checked across wire services and outlets from the left, centre and right. Facts every outlet agrees on are reported as fact. Where outlets differ, the framing is shown and attributed. Status labels: a solid box means Confirmed (on the record, multiple outlets), an outlined box means Developing (facts still moving), and a dashed box means Disputed (the parties contradict each other). The lens boxes are analysis, not reporting. Some paywalled articles could only be read through headlines or wire copies, and the dollar rate is approximate. “Since yesterday” follow-ups start with the next edition.</p>
+</div>
