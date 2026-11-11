@@ -78,5 +78,15 @@
     "license": "CC BY-SA 2.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
     "source": "https://commons.wikimedia.org/wiki/File:Interior_Ontario_Legislative_Assembly_Toronto_2010.jpg"
+  },
+  "xi-jinping": {
+    "name": "Xi Jinping",
+    "file": "xi-jinping.jpg",
+    "wikidata": "Q15031",
+    "description": "General Secretary of the Chinese Communist Party since 2012 (born 1953)",
+    "author": "Presidencia de la República del Ecuador",
+    "license": "Public domain",
+    "license_url": "",
+    "source": "https://commons.wikimedia.org/wiki/File:Xi_Jinping_on_August_18,_2026_(cropped).jpg"
   }
 }
