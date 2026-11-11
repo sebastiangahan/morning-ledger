@@ -27,19 +27,13 @@
     "name": "Pierre Poilievre",
     "wikidata": "Q3386636",
     "description": "Canadian politician",
-    "photo_year": 2024,
-    "author": "TVA Nouvelles",
-    "license": "CC BY 3.0",
-    "license_url": "https://creativecommons.org/licenses/by/3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Pierre_Poilievre_interview_with_TVA_Nouvelles_June_2024.jpg",
+    "photo_year": 2022,
+    "author": "Mykola Swarnyk",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Pierre_Poilievre_Holodomor_2022_1_(cropped).jpg",
     "picker": 5,
-    "alternatives": [
-      "File:Joe Biden participates in a pull-aside meeting with Pierre Poilievre (52881221960).jpg",
-      "File:Joe Biden participates in a pull-aside meeting with Pierre Poilievre (52881221960) (cropped).jpg",
-      "File:פייר פוליאב, אסיפת בחירות.jpg",
-      "File:Pierre Poilievre Holodomor 2022 1 (cropped).jpg",
-      "File:Pierre Poilievre Holodomor 2022 1.jpg"
-    ]
+    "alternatives": []
   },
   "william-nylander": {
     "name": "William Nylander",
@@ -57,19 +51,13 @@
     "name": "Kawhi Leonard",
     "wikidata": "Q926248",
     "description": "American basketball player (born 1991)",
-    "photo_year": 2022,
-    "author": "Lance Cpl. Mhecaela J. Watts",
-    "license": "Public domain",
-    "license_url": "",
-    "source": "https://commons.wikimedia.org/wiki/File:Marines_welcome_Kawhi_Leonard_aboard_Camp_Pendleton_(1).jpg",
+    "photo_year": 2019,
+    "author": "Chensiyuan",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:1_kawhi_leonard_2019_(cropped).jpg",
     "picker": 5,
-    "alternatives": [
-      "File:Marines welcome Kawhi Leonard aboard Camp Pendleton (7440607).jpg",
-      "File:1 kawhi leonard 2019.jpg",
-      "File:Kawhi Leonard presents ball to President Obama 2 2015-01-12 cropped.jpg",
-      "File:Kawhi Leonard vs Charlotte 2019.jpg",
-      "File:1 kawhi leonard 2019 (cropped).jpg"
-    ]
+    "alternatives": []
   },
   "sza": {
     "name": "SZA",
@@ -79,15 +67,9 @@
     "author": "Raph_PH",
     "license": "CC BY 4.0",
     "license_url": "https://creativecommons.org/licenses/by/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:KendrickSZASPurs230725-112.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:KendrickSZASPurs230725-19_-_54683179509_(cropped)_(cropped).jpg",
     "picker": 5,
-    "alternatives": [
-      "File:KendrickSZASPurs230725-49.jpg",
-      "File:KendrickSZASPurs230725-53.jpg",
-      "File:KendrickSZASPurs230725-56.jpg",
-      "File:KendrickSZASPurs230725-58.jpg",
-      "File:KendrickSZASPurs230725-66.jpg"
-    ]
+    "alternatives": []
   },
   "scotiabank-arena": {
     "name": "Scotiabank Arena",
