@@ -1,17 +1,23 @@
 # Photo standard for The Morning Ledger
 
-Set by Sebastian on 2026-11-11 from reference photos he picked.
+Set by Sebastian on 2026-11-11 after three test runs, from reference photos he picked.
+
+**What to get**
+1. One photo for the main person or place in each story, plus any extra the vlog needs.
+2. Free-licence Wikimedia Commons photos only, always credited (photographer + licence). Never Getty, Reuters, AP, CP or other agency photos.
+3. Reuse photos already in this folder unless the person's look has clearly changed (new team, much newer photo available).
 
 **People**
-- Professional press-photo look: subject sharp and filling much of the frame (waist-up or full body), clean or blurred background.
-- Caught in the act of their job: politicians speaking at a podium or in the House, gesturing, with flags behind them; athletes in a current-season game or warm-up in their current team's jersey; musicians performing on stage with a mic, or seated/posed at a formal event.
-- Most recent available. Natural, not a stiff official headshot.
-- Avoid: paparazzi or street shots, people seen from behind, crowded group photos where the subject is small, old team jerseys, blurry phone snaps.
+4. Polished press-style framing: sharp, subject filling much of the frame (waist-up or full body).
+5. Doing their job: politicians at a podium, in the House or at an event with flags; athletes in a game or warm-up in their current team's jersey; musicians on stage with a mic or at a formal event.
+6. The most recent photo that meets this standard.
+7. Avoid: stiff official headshots, paparazzi or red-carpet candids, shots from behind, crowded group shots where the subject is small, old jerseys, blurry phone snaps.
 
 **Places and landmarks**
-- The recognizable outside view people know, in vivid colour: blue sky, lit signs and screens, or dusk lights. Avoid grey, overcast or washed-out shots.
-- Interiors only when the story is about the inside.
+8. The recognizable outside view: the full building with its signage.
+9. Vivid colour and good light: blue sky, lit screens and signs, or dusk. No grey, overcast or washed-out shots.
+10. Interiors only when the story is about the inside.
 
-**Picking**
-- The "Fetch photos" action saves up to 12 candidates per name in photos/candidates/<slug>/. Look at them and set the best one as the third field in photos/wanted.txt.
-- His reference photos were press-agency photos and can't be published; free Wikimedia Commons photos only.
+**How the pick is made**
+11. The "Fetch photos" action saves up to 12 ranked candidates per name in photos/candidates/<slug>/ (list.json gives the file names). Look at them and put the best one as the third field in photos/wanted.txt ("Name | hint | File:...jpg"); never choose by text alone.
+12. If nothing meets the standard, use no photo and say so in the vlog kit.
