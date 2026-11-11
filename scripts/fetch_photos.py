@@ -10,13 +10,13 @@ too so a different one can be picked by hand. Entries made by an older picker ar
 Runs in GitHub Actions (see .github/workflows/photos.yml)."""
 import json, re, time, unicodedata, pathlib, urllib.parse, urllib.request, datetime
 
-PICKER = 2
+PICKER = 3
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DIR = ROOT / "photos"
 UA = "MorningLedgerPhotoBot/1.1 (https://themorningledgerr.netlify.app)"
 FREE = re.compile(r"^(cc0|cc[- ]by(-sa)?[- ]?[0-9.]*|public domain|pd.*|attribution.*)$", re.I)
 YEAR = datetime.date.today().year
-NEG = re.compile(r"portrait|official|headshot|head shot|crop|signature|logo|poster|card|flag|coat of arms|campaign photo|mugshot|graffiti|statue|wax|cartoon|drawing|painting|\bsign\b|banner|billboard|screenshot", re.I)
+NEG = re.compile(r"portrait|official|headshot|head shot|crop|signature|logo|poster|card|flag|coat of arms|campaign photo|mugshot|graffiti|statue|wax|cartoon|drawing|painting|\bsign\b|banner|billboard|screenshot|quote|slogan|mural|caricature|vandal|turd|meme|protest sign|placard|tombstone|plaque|stamp|coin", re.I)
 POS = re.compile(r"speak|speech|talk|at the|during|game|match|vs\.?|versus|playing|plays|rally|concert|perform|live|tour|festival|visit|meet|meeting|press|conference|announce|parade|ceremony|event|interview|stage|summit|warm[- ]?up|practice|celebrat", re.I)
 
 def get(url, params=None):
@@ -66,6 +66,13 @@ def category_files(cat, limit=900):
         cats = nxt[:40]
     return files
 
+def depicting(qid, name, limit=200):
+    titles = []
+    for q in (f"haswbstatement:P180={qid} filetype:bitmap", f'intitle:"{name}" filetype:bitmap'):
+        r = api(CM, action="query", list="search", srsearch=q, srnamespace=6, srlimit=100, srsort="create_timestamp_desc")
+        titles += [x["title"] for x in r["query"]["search"] if re.search(r"\.jpe?g$", x["title"], re.I)]
+    return list(dict.fromkeys(titles))[:limit]
+
 def info(titles):
     out = []
     for i in range(0, len(titles), 50):
@@ -90,6 +97,8 @@ def score(title, ii):
     s += 4 * min(2, len(POS.findall(text)))
     s -= 8 * min(2, len(NEG.findall(text)))
     if re.search(r"\(cropped\)|cropped", title, re.I): s -= 6
+    others = len(re.findall(r",| and | & ", title))
+    s -= 3 * max(0, others - 1)        # crowded group shots make weak lead photos
     return s, year, lic, md
 
 def credit(name, item, title, ii, lic, md, year, alts):
@@ -116,7 +125,8 @@ def main():
                 cands = info([forced if forced.startswith("File:") else "File:" + forced])
                 ranked = [(score(t, ii) or (0, 0, "", ii.get("extmetadata", {})), t, ii) for t, ii in cands]
             else:
-                titles = category_files(cat) if cat else []
+                titles = depicting(item["id"], name) if item else []
+                if len(titles) < 8 and cat: titles += [x for x in category_files(cat) if name.split()[-1].lower() in x.lower()]
                 if p18: titles.append("File:" + p18)
                 titles = list(dict.fromkeys(titles))
                 ranked = [(sc, t, ii) for t, ii in info(titles) if (sc := score(t, ii))]
@@ -126,6 +136,17 @@ def main():
             if forced and not FREE.match(lic or ""): missing.append(f"{name}: forced file is not free ({lic})"); continue
             (DIR / f"{key}.jpg").write_bytes(get(ii.get("thumburl") or ii["url"]))
             alts = [t for _, t, _ in ranked[1:6]]
+            cdir = DIR / "candidates" / key
+            if cdir.exists():
+                for f in cdir.glob("*"): f.unlink()
+            cdir.mkdir(parents=True, exist_ok=True)
+            for n, (_, t2, ii2) in enumerate(ranked[:8]):
+                try:
+                    small = api(CM, action="query", titles=t2, prop="imageinfo", iiprop="url", iiurlwidth=480)
+                    u = next(iter(small["query"]["pages"].values()))["imageinfo"][0]["thumburl"]
+                    (cdir / f"{n}.jpg").write_bytes(get(u))
+                except Exception: pass
+            (cdir / "list.json").write_text(json.dumps([t2 for _, t2, _ in ranked[:8]], indent=1, ensure_ascii=False))
             credits[key] = credit(name, item, title, ii, lic, md, year, alts)
             print(f"OK  {name}: {title} ({year}, score {sc:.1f}, {len(ranked)} candidates)")
             for (s2, y2, *_), t2, _ in ranked[1:6]: print(f"    alt {t2} ({y2}, {s2:.1f})")
