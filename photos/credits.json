@@ -75,19 +75,13 @@
     "name": "Scotiabank Arena",
     "wikidata": "Q406972",
     "description": "indoor arena in Toronto, Canada",
-    "photo_year": 2024,
-    "author": "CandyEatingReporter",
-    "license": "CC BY-SA 4.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Toronto_Harbour_as_viewed_from_the_top_of_the_TD_Tower.jpg",
+    "photo_year": 2026,
+    "author": "SamKramer123",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Scotiabank_Arena_Exterior.jpg",
     "picker": 6,
-    "alternatives": [
-      "File:Scotiabank Arena Exterior.jpg",
-      "File:Scotiabank Arena from CIBC Square Park - 20260308.jpg",
-      "File:Scotiabank Arena Entrance to PATH 2021.jpeg",
-      "File:Scotiabank Arena along Bay Street, May 13 2026 (01).jpg",
-      "File:Connecting Tunnel of CIBC Square and Scotiabank Arena.jpg"
-    ]
+    "alternatives": []
   },
   "queen-s-park": {
     "name": "Queen's Park",
