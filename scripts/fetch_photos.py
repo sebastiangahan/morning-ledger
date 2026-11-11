@@ -137,16 +137,16 @@ def main():
             (DIR / f"{key}.jpg").write_bytes(get(ii.get("thumburl") or ii["url"]))
             alts = [t for _, t, _ in ranked[1:6]]
             cdir = DIR / "candidates" / key
-            if cdir.exists():
+            if not forced and cdir.exists():
                 for f in cdir.glob("*"): f.unlink()
             cdir.mkdir(parents=True, exist_ok=True)
-            for n, (_, t2, ii2) in enumerate(ranked[:8]):
+            for n, (_, t2, ii2) in enumerate([] if forced else ranked[:8]):
                 try:
                     small = api(CM, action="query", titles=t2, prop="imageinfo", iiprop="url", iiurlwidth=480)
                     u = next(iter(small["query"]["pages"].values()))["imageinfo"][0]["thumburl"]
                     (cdir / f"{n}.jpg").write_bytes(get(u))
                 except Exception: pass
-            (cdir / "list.json").write_text(json.dumps([t2 for _, t2, _ in ranked[:8]], indent=1, ensure_ascii=False))
+            if not forced: (cdir / "list.json").write_text(json.dumps([t2 for _, t2, _ in ranked[:8]], indent=1, ensure_ascii=False))
             credits[key] = credit(name, item, title, ii, lic, md, year, alts)
             print(f"OK  {name}: {title} ({year}, score {sc:.1f}, {len(ranked)} candidates)")
             for (s2, y2, *_), t2, _ in ranked[1:6]: print(f"    alt {t2} ({y2}, {s2:.1f})")
