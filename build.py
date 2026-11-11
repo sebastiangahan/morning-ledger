@@ -21,14 +21,35 @@ NAV_CSS = """<style>
  font-family:"IBM Plex Sans Condensed","Arial Narrow",Arial,sans-serif;text-transform:uppercase;letter-spacing:.09em;font-size:12px;font-weight:600}
 .sitebar a{color:#000;text-decoration:none;border-bottom:1px solid #bdbdbd}.sitebar a:hover{border-color:#000}
 .sitebar nav{display:flex;gap:16px}
-.sitefoot{max-width:1140px;margin:0 auto 40px;padding:0 max(16px,env(safe-area-inset-left,0px));font-size:14.5px;color:#444;font-family:Georgia,serif}
+.byline{text-align:center;font-family:"IBM Plex Sans Condensed","Arial Narrow",Arial,sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:600;color:#444;margin:-4px 0 10px}
+.signup{max-width:1140px;margin:28px auto;border:2px solid #000;padding:16px 18px;box-sizing:border-box;font-family:Newsreader,Georgia,serif}
+.page .signup{margin:28px 0 0}
+.signup h2{font-family:"Playfair Display",Georgia,serif;font-weight:800;font-size:24px;line-height:1.15;margin:0 0 4px}
+.signup p{margin:0 0 12px;color:#444;font-size:16px}
+.signup form{display:flex;gap:8px;flex-wrap:wrap}
+.signup input[type=email]{flex:1 1 220px;min-width:0;font:inherit;font-size:17px;border:2px solid #000;border-radius:0;padding:9px 10px;background:#fff;color:#000}
+.signup button{font-family:"IBM Plex Sans Condensed",Arial,sans-serif;text-transform:uppercase;letter-spacing:.1em;font-weight:700;font-size:14px;background:#000;color:#fff;border:2px solid #000;border-radius:0;padding:10px 18px;cursor:pointer}
+.signup button:hover{background:#fff;color:#000}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 </style>"""
 
 def nav(date_label):
     return ('<div class="sitebar"><span>%s</span><nav><a href="/">Today</a><a href="/archive/">Archive &amp; search</a></nav></div>' % date_label)
 
-FOOT = ('<p class="sitefoot">The Morning Ledger is written with AI assistance and checked against reporting from outlets across the '
-        'political spectrum. Every story links to its sources. Free to read. <a href="/archive/">Browse past editions</a>.</p>')
+SIGNUP = (
+  '<section class="signup" id="subscribe"><h2>Get the Ledger in your inbox</h2>'
+  '<p>Free, every morning. Toronto, Ontario, Canada, the U.S. and the world in about 10 minutes.</p>'
+  '<form name="subscribe" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="company">'
+  '<p hidden><label>Leave empty <input name="company"></label></p>'
+  '<input type="hidden" name="form-name" value="subscribe">'
+  '<label class="sr" for="email-%s">Email address</label>'
+  '<input id="email-%s" type="email" name="email" required placeholder="you@example.com" autocomplete="email">'
+  '<button type="submit">Subscribe</button></form></section>')
+
+def signup(tag):
+    return SIGNUP % (tag, tag)
+
+BYLINE = '<div class="byline">By Sebastian Gahan</div>'
 
 def page(title, desc, body, extra_head=""):
     return ("<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\">"
@@ -56,9 +77,13 @@ def build():
         scan = [text(s) for s in re.findall(r"<li><span>(.*?)</span></li>", body, flags=re.S)]
         decks = [text(d) for d in re.findall(r'<p class="deck">(.*?)</p>', body, flags=re.S)]
         lead = heads[0] if heads else "The Morning Ledger"
+        body = re.sub(r'<p class="foot">.*?</p>', '', body, flags=re.S)
+        body = body.replace('The Morning Ledger</div>', 'The Morning Ledger</div>' + BYLINE, 1)
+        body = re.sub(r'(<div class="sect">)', signup("top") + r'\1', body, count=1)
+        body = re.sub(r'</div>\s*$', signup("end") + '</div>', body)
         index.append({"date": date, "label": label, "lead": lead, "headlines": heads, "scan": scan,
                       "q": " ".join(heads + decks + scan).lower()})
-        doc = page(f"{lead} | The Morning Ledger, {label}", " ".join(scan[:2])[:200], nav(label) + body + FOOT, head)
+        doc = page(f"{lead} | The Morning Ledger, {label}", " ".join(scan[:2])[:200], nav(label) + body, head)
         (OUT / date).mkdir()
         (OUT / date / "index.html").write_text(doc)
     if index:
@@ -67,7 +92,11 @@ def build():
     (OUT / "editions.json").write_text(json.dumps(index, ensure_ascii=False))
     (OUT / "archive").mkdir()
     (OUT / "archive" / "index.html").write_text(page("Archive | The Morning Ledger",
-        "Every edition of The Morning Ledger, searchable by date or story.", nav("Archive") + ARCHIVE, FONTS))
+        "Every edition of The Morning Ledger, searchable by date or story.", nav("Archive") + ARCHIVE + signup("arc"), FONTS))
+    (OUT / "thanks").mkdir()
+    (OUT / "thanks" / "index.html").write_text(page("Subscribed | The Morning Ledger", "You're on the list.",
+        nav("The Morning Ledger") + '<main class="signup" style="margin:40px auto;max-width:640px"><h2>You\'re on the list.</h2>'
+        '<p>The next edition of The Morning Ledger will come to your inbox. In the meantime, <a href="/">read today\'s edition</a>.</p></main>', FONTS))
     print(f"built {len(index)} editions into {OUT}")
 
 FONTS = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,900&family=Playfair+Display:wght@800&family=Newsreader:opsz,wght@6..72,400&family=IBM+Plex+Sans+Condensed:wght@600;700&display=swap">'
@@ -87,7 +116,7 @@ ARCHIVE = r"""<style>
 .arc .m{color:#444;font-size:15.5px}
 .arc mark{background:#000;color:#fff;padding:0 2px}
 </style>
-<main class="arc"><h1>The Morning Ledger</h1>
+<main class="arc"><h1>The Morning Ledger</h1><div class="byline" style="margin-top:8px">By Sebastian Gahan</div>
 <div class="tools"><input type="search" id="q" placeholder="Search a story, person or place" aria-label="Search editions"><input type="date" id="d" aria-label="Jump to a date"></div>
 <p class="count" id="c"></p><ol id="list"></ol></main>
 <script>
