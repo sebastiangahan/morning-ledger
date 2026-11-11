@@ -30,6 +30,7 @@ NAV_CSS = """<style>
 .signup input[type=email]{flex:1 1 220px;min-width:0;font:inherit;font-size:17px;border:2px solid #000;border-radius:0;padding:9px 10px;background:#fff;color:#000}
 .signup button{font-family:"IBM Plex Sans Condensed",Arial,sans-serif;text-transform:uppercase;letter-spacing:.1em;font-weight:700;font-size:14px;background:#000;color:#fff;border:2px solid #000;border-radius:0;padding:10px 18px;cursor:pointer}
 .signup button:hover{background:#fff;color:#000}
+.signup .ok{margin:10px 0 0;color:#000;font-weight:600}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 </style>"""
 
@@ -39,24 +40,27 @@ def nav(date_label):
 SIGNUP = (
   '<section class="signup" id="subscribe"><h2>Get the Ledger in your inbox</h2>'
   '<p>Free, every morning. Toronto, Ontario, Canada, the U.S. and the world in about 10 minutes.</p>'
-  '<form name="subscribe" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="company">'
-  '<p hidden><label>Leave empty <input name="company"></label></p>'
-  '<input type="hidden" name="form-name" value="subscribe">'
+  '<form class="kit" action="https://app.kit.com/forms/10176469/subscriptions" method="post">'
   '<label class="sr" for="email-%s">Email address</label>'
-  '<input id="email-%s" type="email" name="email" required placeholder="you@example.com" autocomplete="email">'
-  '<button type="submit">Subscribe</button></form></section>')
+  '<input id="email-%s" type="email" name="email_address" required placeholder="you@example.com" autocomplete="email">'
+  '<button type="submit">Subscribe</button></form><p class="ok" hidden>Almost done: check your inbox and click the confirmation link.</p></section>')
 
 def signup(tag):
     return SIGNUP % (tag, tag)
 
 BYLINE = '<div class="byline">By Sebastian Gahan</div>'
 
+KITJS = """<script>document.addEventListener('submit',function(e){var f=e.target;if(!f.classList||!f.classList.contains('kit'))return;e.preventDefault();
+var b=f.querySelector('button');b.disabled=true;b.textContent='Sending...';
+fetch(f.action,{method:'POST',mode:'no-cors',body:new FormData(f)}).then(function(){f.hidden=true;f.parentNode.querySelector('.ok').hidden=false;})
+.catch(function(){f.submit();});});</script>"""
+
 def page(title, desc, body, extra_head=""):
     return ("<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\">"
             "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1,viewport-fit=cover\">"
             f"<title>{html.escape(title)}</title><meta name=\"description\" content=\"{html.escape(desc)}\">"
             f"<meta property=\"og:title\" content=\"{html.escape(title)}\"><meta property=\"og:description\" content=\"{html.escape(desc)}\">"
-            f"{extra_head}{NAV_CSS}{clarity()}</head><body style=\"margin:0;background:#fff;color:#000\">{body}</body></html>")
+            f"{extra_head}{NAV_CSS}{clarity()}{KITJS}</head><body style=\"margin:0;background:#fff;color:#000\">{body}</body></html>")
 
 def build():
     if OUT.exists(): shutil.rmtree(OUT)
