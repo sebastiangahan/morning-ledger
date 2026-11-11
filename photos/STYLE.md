@@ -9,7 +9,7 @@ Set by Sebastian on 2026-11-11 from reference photos he picked.
 - Avoid: paparazzi or street shots, people seen from behind, crowded group photos where the subject is small, old team jerseys, blurry phone snaps.
 
 **Places and landmarks**
-- The recognizable outside view people know: full exterior with signage, wide street-level or plaza view, good daylight or lit at dusk.
+- The recognizable outside view people know, in vivid colour: blue sky, lit signs and screens, or dusk lights. Avoid grey, overcast or washed-out shots.
 - Interiors only when the story is about the inside.
 
 **Picking**

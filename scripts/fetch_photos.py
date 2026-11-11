@@ -10,7 +10,7 @@ too so a different one can be picked by hand. Entries made by an older picker ar
 Runs in GitHub Actions (see .github/workflows/photos.yml)."""
 import json, re, time, unicodedata, pathlib, urllib.parse, urllib.request, datetime
 
-PICKER = 5
+PICKER = 6
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DIR = ROOT / "photos"
 UA = "MorningLedgerPhotoBot/1.1 (https://themorningledgerr.netlify.app)"
@@ -113,6 +113,34 @@ def score(title, ii, human=True):
     s -= 3 * max(0, others - 1)        # crowded group shots make weak lead photos
     return s, year, lic, md
 
+def colourfulness(url):
+    """Hasler-Suesstrunk colourfulness plus a brightness term, on a small thumbnail."""
+    from PIL import Image, ImageStat
+    import io
+    im = Image.open(io.BytesIO(get(url))).convert("RGB").resize((160, 110))
+    px = list(im.getdata())
+    rg = [r - g for r, g, b in px]; yb = [0.5 * (r + g) - b for r, g, b in px]
+    mean = lambda a: sum(a) / len(a)
+    sd = lambda a: (sum((x - mean(a)) ** 2 for x in a) / len(a)) ** 0.5
+    c = (sd(rg) ** 2 + sd(yb) ** 2) ** 0.5 + 0.3 * (mean(rg) ** 2 + mean(yb) ** 2) ** 0.5
+    bright = mean([sum(p) / 3 for p in px])
+    return c + 0.08 * min(bright, 150)
+
+def colour_rerank(ranked, top=24):
+    """Landmarks: among the best text matches, prefer vivid, well-lit photos (blue sky, lit signs, dusk)."""
+    out = []
+    for sc, t, ii in ranked[:top]:
+        try:
+            r = api(CM, action="query", titles=t, prop="imageinfo", iiprop="url", iiurlwidth=320)
+            u = next(iter(r["query"]["pages"].values()))["imageinfo"][0]["thumburl"]
+            col = colourfulness(u)
+        except Exception:
+            col = 0
+        out.append(((sc[0] + col / 6, *sc[1:]), t, ii))
+        time.sleep(0.3)
+    out.sort(key=lambda x: x[0][0], reverse=True)
+    return out + ranked[top:]
+
 def credit(name, item, title, ii, lic, md, year, alts):
     return {"name": name, "wikidata": item["id"] if item else "", "description": item.get("description", "") if item else "",
             "photo_year": year, "author": strip(md.get("Artist", {}).get("value")) or "Unknown", "license": lic,
@@ -143,6 +171,8 @@ def main():
                 titles = list(dict.fromkeys(titles))
                 ranked = [(sc, t, ii) for t, ii in info(titles) if (sc := score(t, ii, (item or {}).get("human", True)))]
                 ranked.sort(key=lambda x: x[0][0], reverse=True)
+            if not forced and not (item or {}).get("human", True):
+                ranked = colour_rerank(ranked)
             if not ranked: missing.append(f"{name}: no free photo found"); continue
             (sc, year, lic, md), title, ii = ranked[0]
             if forced and not FREE.match(lic or ""): missing.append(f"{name}: forced file is not free ({lic})"); continue
