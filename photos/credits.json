@@ -1,23 +1,27 @@
 {
   "doug-ford": {
     "name": "Doug Ford",
-    "file": "doug-ford.jpg",
     "wikidata": "Q5300478",
     "description": "Canadian politician and 26th premier of Ontario since 2018 (born 1964)",
-    "author": "Ambassador Pete Hoekstra",
-    "license": "Public domain",
-    "license_url": "",
-    "source": "https://commons.wikimedia.org/wiki/File:Doug_Ford_in_Toronto_June_2025_(edited).jpg"
+    "photo_year": 2021,
+    "author": "Newmila",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Ford_is_a_turd.jpg",
+    "picker": 2,
+    "alternatives": []
   },
   "mark-carney": {
     "name": "Mark Carney",
-    "file": "mark-carney.jpg",
     "wikidata": "Q192533",
     "description": "24th prime minister of Canada since 2025",
+    "photo_year": 2026,
     "author": "Bryan Berlin",
     "license": "CC BY-SA 4.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Mark_Carney_Argentina_v_Spain_19_July_2026-303_(3x4_close_up_cropped).jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Mark_Carney_Argentina_v_Spain_19_July_2026-303_(3x4_close_up_cropped).jpg",
+    "picker": 2,
+    "alternatives": []
   },
   "pierre-poilievre": {
     "name": "Pierre Poilievre",
@@ -31,62 +35,109 @@
   },
   "william-nylander": {
     "name": "William Nylander",
-    "file": "william-nylander.jpg",
     "wikidata": "Q14614517",
     "description": "Canadian-Swedish ice hockey player",
-    "author": "TheAHL",
-    "license": "CC BY 2.0",
-    "license_url": "https://creativecommons.org/licenses/by/2.0",
-    "source": "https://commons.wikimedia.org/wiki/File:William_Nylander_(39540536784)_(a).jpg"
+    "photo_year": 2024,
+    "author": "Jenn G from Seattle, WA",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Toronto_Maple_Leafs_at_Seattle_Kraken_-_2024-01-21_-_Andr%C3%A9_Burakovsky,_Calle_J%C3%A4rnkrok,_William_Nylander_and_Morgan_Rielly_(53480887651).jpg",
+    "picker": 2,
+    "alternatives": [
+      "File:Toronto Maple Leafs at Seattle Kraken - 2024-01-21 - André Burakovsky and William Nylander (53481195244).jpg",
+      "File:Toronto Maple Leafs at Seattle Kraken - 2024-01-21 - Jordan Eberle and William Nylander (53481195279).jpg",
+      "File:Toronto Maple Leafs at Seattle Kraken - 2024-01-21 - Tomas Tatar, Jordan Eberle and William Nylander (53481029398).jpg",
+      "File:Toronto Maple Leafs at Seattle Kraken - 2024-01-21 - William Nylander (53480729074).jpg",
+      "File:CCA3874 (50574710922).jpg"
+    ]
   },
   "kawhi-leonard": {
     "name": "Kawhi Leonard",
-    "file": "kawhi-leonard.jpg",
     "wikidata": "Q926248",
     "description": "American basketball player (born 1991)",
-    "author": "Chensiyuan",
-    "license": "CC BY-SA 4.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:1_kawhi_leonard_2019_nba_finals_(cropped).jpg"
+    "photo_year": 2022,
+    "author": "Lance Cpl. Mhecaela J. Watts",
+    "license": "Public domain",
+    "license_url": "",
+    "source": "https://commons.wikimedia.org/wiki/File:Marines_welcome_Kawhi_Leonard_aboard_Camp_Pendleton_(1).jpg",
+    "picker": 2,
+    "alternatives": [
+      "File:Marines welcome Kawhi Leonard aboard Camp Pendleton (7440607).jpg",
+      "File:1 kawhi leonard 2019.jpg",
+      "File:Kawhi Leonard vs Charlotte 2019.jpg",
+      "File:1 kawhi leonard 2019 nba finals.jpg",
+      "File:Kawhi Leonard Dunk (33179280005).jpg"
+    ]
   },
   "sza": {
     "name": "SZA",
-    "file": "sza.jpg",
     "wikidata": "Q16210722",
     "description": "American singer-songwriter (born 1989)",
-    "author": "Raph_PH",
+    "photo_year": 2026,
+    "author": "SWinxy",
     "license": "CC BY 4.0",
     "license_url": "https://creativecommons.org/licenses/by/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:KendrickSZASPurs230725-19_-_54683179509_(cropped)_(cropped).jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Guests_at_the_2026_Met_Gala_227.jpg",
+    "picker": 2,
+    "alternatives": [
+      "File:Guests at the 2026 Met Gala 231.jpg",
+      "File:Guests at the 2026 Met Gala 232.jpg",
+      "File:Guests at the 2026 Met Gala 234.jpg",
+      "File:Guests at the 2026 Met Gala 235.jpg",
+      "File:Guests at the 2026 Met Gala 233.jpg"
+    ]
   },
   "scotiabank-arena": {
     "name": "Scotiabank Arena",
-    "file": "scotiabank-arena.jpg",
     "wikidata": "Q406972",
     "description": "indoor arena in Toronto, Canada",
-    "author": "Secondarywaltz",
-    "license": "Public domain",
-    "license_url": "",
-    "source": "https://commons.wikimedia.org/wiki/File:Air_Canada_Centre_and_CN_Tower_from_Bay_St.jpg"
+    "photo_year": 2026,
+    "author": "Dillan Payne",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Bay_Street_from_CIBC_Square_Park,_May_13_2026_(03).jpg",
+    "picker": 2,
+    "alternatives": [
+      "File:Scotiabank Arena along Bay Street, May 13 2026 (01).jpg",
+      "File:Scotiabank Arena from CIBC Square Park - 20260308.jpg",
+      "File:Mariah Carey Toronto 2022 1.jpg",
+      "File:Mariah Carey Toronto 2022 2.jpg",
+      "File:Scotiabank Arena Panorama.jpg"
+    ]
   },
   "queen-s-park": {
     "name": "Queen's Park",
-    "file": "queen-s-park.jpg",
     "wikidata": "Q1809086",
     "description": "single house of Legislature of Ontario",
-    "author": "Josh Evnin from Chicago, IL, USA",
-    "license": "CC BY-SA 2.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Interior_Ontario_Legislative_Assembly_Toronto_2010.jpg"
+    "photo_year": 2017,
+    "author": "Mykola Swarnyk",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Ukrainian_Flag_Raising_Legislative_Assembly_of_Ontario_2017.jpg",
+    "picker": 2,
+    "alternatives": [
+      "File:Interior Ontario Legislative Assembly Toronto 2010.jpg",
+      "File:2nd Ontario Parliament after Mowat 1872 arrival.jpg",
+      "File:Group portrait of legislative pages at the Legislative Assembly of Ontario.jpg",
+      "File:New Ontario MPPs welcomed by Speaker William Murdoch, 1962.jpg"
+    ]
   },
   "xi-jinping": {
     "name": "Xi Jinping",
-    "file": "xi-jinping.jpg",
     "wikidata": "Q15031",
     "description": "General Secretary of the Chinese Communist Party since 2012 (born 1953)",
-    "author": "Presidencia de la República del Ecuador",
-    "license": "Public domain",
-    "license_url": "",
-    "source": "https://commons.wikimedia.org/wiki/File:Xi_Jinping_on_August_18,_2026_(cropped).jpg"
+    "photo_year": 2026,
+    "author": "Shwangtianyuan",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Anti_food_waste_quotes_by_Xi_Jinping-20260314.jpg",
+    "picker": 2,
+    "alternatives": [
+      "File:The President Xi Jinping's Celebrated dictum in GZRM 20220520.jpg",
+      "File:Dance of two giants.jpg",
+      "File:难忘下党学习基地.jpg",
+      "File:贵州省公安厅 标语.jpg",
+      "File:Government building of Huangzhou Town5.jpg"
+    ]
   }
 }
