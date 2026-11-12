@@ -1,5 +1,7 @@
 {
   "name": "morning-ledger",
   "compatibility_date": "2026-11-01",
+  "workers_dev": true,
+  "preview_urls": true,
   "assets": { "directory": "./public", "not_found_handling": "404-page" }
 }
